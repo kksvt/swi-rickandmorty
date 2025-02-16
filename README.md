@@ -1,8 +1,8 @@
 # Rick and Morty API Display
 ## Overview
-This React application fetches data from the [Rick and Morty API](https://rickandmortyapi.com/documentation/) and parses them into a table-based list.
+This React application fetches data from the [Rick and Morty API](https://rickandmortyapi.com/documentation/) and parses it into a table-based list.
 
-The list fulfills all the expected requirements, namely it:
+The application fulfills all the expected requirements, namely it:
 - displays the following details:
     - Name
     - Status
