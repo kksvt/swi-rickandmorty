@@ -21,5 +21,5 @@ The list fulfills all the expected requirements, namely it:
 ## Running a development server
 > npm start
 
-## Deyploment
+## Deployment
 The application is additionally deployed under my [github page](https://kksvt.github.io/swi-rickandmorty).
