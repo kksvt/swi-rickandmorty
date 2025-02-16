@@ -1,4 +1,3 @@
-import './App.css';
 import 'semantic-ui-css/semantic.min.css';
 import { Route, Routes, BrowserRouter as Router } from 'react-router-dom';
 import CharacterList from './components/CharacterList'
