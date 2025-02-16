@@ -4,15 +4,15 @@ import { useNavigate } from 'react-router-dom';
 import { AppContext } from '../context/AppContext';
 
 import { 
-    Button, Segment, Image, Container, Message, Loader, 
-    Table, Header, Dropdown } 
+    Segment, Image, Container, Message, Loader, 
+    Table, Header, Dropdown, Pagination } 
     from 'semantic-ui-react';
 
 const CharacterList = () => {
     const navigate = useNavigate();
 
     const { state, dispatch } = useContext(AppContext); 
-    const { listResponse, prevPage, nextPage, numPages, url, page, statusFilter } = state;
+    const { listResponse, numPages, url, page, statusFilter } = state;
     
     useEffect(() => {
         axios.get(url, { params: {page: page, status: statusFilter}}).then((res) => {
@@ -29,7 +29,7 @@ const CharacterList = () => {
                 error: err,
             }});
         });
-    }, [url, page, statusFilter]);
+    }, [dispatch, url, page, statusFilter]);
 
     const statusOptions = [
         {
@@ -58,11 +58,12 @@ const CharacterList = () => {
         },
     ];
 
-    const setUrl = (newUrl) => {
+    //unused, with the pagination system
+    /*const setUrl = (newUrl) => {
         dispatch({type: 'SET_URL', payload: {
             url: newUrl,
         }});
-    };
+    };*/
 
     const setFilter = (status) => {
         dispatch({type: 'SET_QUERY_ARGS', payload: {
@@ -78,12 +79,13 @@ const CharacterList = () => {
     }
 
     const getCellForStatus = (status) => {
-        if (status === 'Alive') {
-            return <Table.Cell positive>{status}</Table.Cell>
-        } else if (status === 'Dead') {
-            return <Table.Cell negative>{status}</Table.Cell>
-        } else {
-            return <Table.Cell warning>{status}</Table.Cell>
+        switch (status) {
+            case 'Alive':
+                return <Table.Cell positive>{status}</Table.Cell>
+            case 'Dead':
+                return <Table.Cell negative>{status}</Table.Cell>
+            default:
+                return <Table.Cell warning>{status}</Table.Cell>
         }
     };
 
@@ -107,8 +109,8 @@ const CharacterList = () => {
     }
 
     //name status species gender image 
-    return <Container text>
-        <Segment raised padded='very'>
+    return <Container text textAlign='center'>
+    <Segment raised padded='very'>
         <Header as='h2'>Rick and Morty characters</Header>
         <Table celled selectable>
             <Table.Header>
@@ -131,7 +133,7 @@ const CharacterList = () => {
             <Table.Body>
             {listResponse.map((character) => {
                 return <Table.Row textAlign='center' key={character.id} onClick={() => navigate(`/character/${character.id}`)}>
-                    <Table.Cell><Image src={character.image} alt={character.name} size='small' circular ui></Image></Table.Cell>
+                    <Table.Cell><Image fluid src={character.image} alt={character.name} size='small' rounded ui centered/></Table.Cell>
                     <Table.Cell>{character.name}</Table.Cell>
                     {getCellForStatus(character.status)}
                     <Table.Cell>{character.species}</Table.Cell>
@@ -140,13 +142,17 @@ const CharacterList = () => {
             })}
             </Table.Body>
         </Table>
-        <h2>Page: {page} / {numPages}</h2>
-        <Button disabled={page === 1} onClick={() => {setPage(1);}}>First</Button>
-        <Button disabled={prevPage === null} onClick={() => {setUrl(prevPage)}}>Previous</Button>
-        <Button disabled={nextPage === null} onClick={() => {setUrl(nextPage)}}>Next</Button>
-        <Button disabled={page === numPages} onClick={() => {setPage(numPages)}}>Last</Button>
-    </Segment>;
-    </Container>
+    </Segment>
+        <Pagination
+            centered
+            defaultActivePage={page} 
+            totalPages={numPages} 
+            onPageChange={(_, { activePage } ) => { setPage(activePage);}}
+            siblingRange={1} 
+            boundaryRange={0}
+            ellipsisItem={null}
+        />
+   </Container>;
 }
 
 export default CharacterList;
