@@ -6,7 +6,7 @@ import CharacterDetails from './components/CharacterDetails';
 function App() {
   return (
     <div className='ui segment inverted'>
-      <Router>
+    <Router basename={process.env.PUBLIC_URL || '/'}>
         <Routes>
           <Route path='/' element={<CharacterList/>}/>
           <Route path='/character/:id' element={<CharacterDetails/>}/>
