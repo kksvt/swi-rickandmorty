@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/swi-rickandmorty/static/css/main.26ab9dfc.css",
-    "main.js": "/swi-rickandmorty/static/js/main.3c22f907.js",
+    "main.js": "/swi-rickandmorty/static/js/main.da773885.js",
     "static/js/488.11e3d836.chunk.js": "/swi-rickandmorty/static/js/488.11e3d836.chunk.js",
     "static/media/brand-icons.svg": "/swi-rickandmorty/static/media/brand-icons.6729d29753e000c17489.svg",
     "static/media/icons.svg": "/swi-rickandmorty/static/media/icons.62d9dae4e0040e81c980.svg",
@@ -21,11 +21,11 @@
     "static/media/outline-icons.woff2": "/swi-rickandmorty/static/media/outline-icons.687a4990ea22bb1a49d4.woff2",
     "index.html": "/swi-rickandmorty/index.html",
     "main.26ab9dfc.css.map": "/swi-rickandmorty/static/css/main.26ab9dfc.css.map",
-    "main.3c22f907.js.map": "/swi-rickandmorty/static/js/main.3c22f907.js.map",
+    "main.da773885.js.map": "/swi-rickandmorty/static/js/main.da773885.js.map",
     "488.11e3d836.chunk.js.map": "/swi-rickandmorty/static/js/488.11e3d836.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.26ab9dfc.css",
-    "static/js/main.3c22f907.js"
+    "static/js/main.da773885.js"
   ]
 }
